@@ -1,12 +1,10 @@
 package compiladorinstructionlist;
 
-import java.util.HashMap;
 import java.util.Map;
 
-public class ReadInputs {
-    public static Map read() {
-        Map<String, Boolean> inputs = new HashMap<>();
-        
+public class InputActions {
+    
+    public static Map create(Map inputs) {
         // Cria as 8 entradas
         Input I1 = new Input("I1", false);
         Input I2 = new Input("I2", false);
@@ -17,9 +15,6 @@ public class ReadInputs {
         Input I7 = new Input("I7", false);
         Input I8 = new Input("I8", false);
         
-        // Lê os valores vindos do módulo
-        // ...
-        
         // Adiciona no hash
         inputs.put(I1.id, I1.currentValue);
         inputs.put(I2.id, I2.currentValue);
@@ -29,6 +24,23 @@ public class ReadInputs {
         inputs.put(I6.id, I6.currentValue);
         inputs.put(I7.id, I7.currentValue);
         inputs.put(I8.id, I8.currentValue);
+        
+        return inputs;
+    }
+    
+    public static Map read(Map inputs) {
+        // Lê os valores de cada entrada vindos do módulo
+        // ...
+        
+        // Atualiza no hash
+        inputs.put("I1", true);
+        inputs.put("I2", false);
+        inputs.put("I3", false);
+        inputs.put("I4", false);
+        inputs.put("I5", true);
+        inputs.put("I6", false);
+        inputs.put("I7", false);
+        inputs.put("I8", false);
         
         return inputs;
     }

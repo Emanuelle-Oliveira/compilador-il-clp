@@ -1,12 +1,19 @@
 package compiladorinstructionlist;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.text.BadLocationException;
 
 public class InterfaceScreen extends javax.swing.JFrame {
     
     Map<String, Boolean> inputs;
     Map<String, Boolean> outputs;
+    Boolean accumulator;
     
     public InterfaceScreen() {
         initComponents();
@@ -108,11 +115,35 @@ public class InterfaceScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_runActionPerformed
 
     private void jb_runMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_runMouseClicked
-        System.out.println("TESTE");
+        System.out.println("Botão clicado");
         jl_showInputs.setText(inputs.toString());
         jl_showOutputs.setText(outputs.toString());
+        
+        
+        List<String> lineList = new ArrayList<String>();
+        lineList = saveLines(lineList);
+        
+        Interpreter.receiveLines(lineList, outputs);
     }//GEN-LAST:event_jb_runMouseClicked
 
+    private List<String> saveLines(List<String> lineList) {
+        int quant = jta_writeInstructions.getLineCount();
+        
+        for(int i = 0; i < quant; i++){
+            try {
+                Integer start = jta_writeInstructions.getLineStartOffset(i);
+                Integer end = jta_writeInstructions.getLineEndOffset(i);
+                String line = jta_writeInstructions.getText(start, end - start);
+                lineList.add(line);
+            } catch (BadLocationException ex) {
+                Logger.getLogger(InterfaceScreen.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        System.out.println(lineList);
+        return lineList;
+    }
+    
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

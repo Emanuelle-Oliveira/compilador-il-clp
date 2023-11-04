@@ -13,7 +13,6 @@ public class InterfaceScreen extends javax.swing.JFrame {
     
     Map<String, Boolean> inputs;
     Map<String, Boolean> outputs;
-    Boolean accumulator;
     
     public InterfaceScreen() {
         initComponents();
@@ -123,7 +122,7 @@ public class InterfaceScreen extends javax.swing.JFrame {
         List<String> lineList = new ArrayList<String>();
         lineList = saveLines(lineList);
         
-        Interpreter.receiveLines(lineList, outputs);
+        Interpreter.receiveLines(lineList, inputs, outputs);
     }//GEN-LAST:event_jb_runMouseClicked
 
     private List<String> saveLines(List<String> lineList) {

@@ -122,7 +122,8 @@ public class InterfaceScreen extends javax.swing.JFrame {
         List<String> lineList = new ArrayList<String>();
         lineList = saveLines(lineList);
         
-        Interpreter.receiveLines(lineList, inputs, outputs);
+        outputs = Interpreter.receiveLines(lineList, inputs, outputs);
+        jl_showOutputs.setText(outputs.toString());
     }//GEN-LAST:event_jb_runMouseClicked
 
     private List<String> saveLines(List<String> lineList) {

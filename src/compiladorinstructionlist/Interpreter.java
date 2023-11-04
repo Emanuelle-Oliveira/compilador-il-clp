@@ -40,7 +40,7 @@ public class Interpreter {
             System.out.println("Operador: " + operator);
             System.out.println("Variável: " + variable);
             
-            executeInstruction(operator, variable, inputs, outputs);
+            outputs = executeInstruction(operator, variable, inputs, outputs);
             
             spaceDetected = false;
             operator = "";
@@ -49,7 +49,7 @@ public class Interpreter {
         return outputs;
     }
     
-    public static void executeInstruction(String operator, String variable, Map<String, Boolean> inputs, Map<String, Boolean> outputs) {
+    public static Map executeInstruction(String operator, String variable, Map<String, Boolean> inputs, Map<String, Boolean> outputs) {
         
         if(operator.equals("LD")){
             accumulator = inputs.get(variable);
@@ -130,5 +130,7 @@ public class Interpreter {
         System.out.println(accumulator);
         System.out.println(inputs);
         System.out.println(outputs);
+        
+        return outputs;
     }
 }

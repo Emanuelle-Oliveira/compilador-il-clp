@@ -53,12 +53,10 @@ public class Interpreter {
         
         if(operator.equals("LD")){
             accumulator = inputs.get(variable);
-            System.out.println(accumulator);
         }
         
         if(operator.equals("LDN")){
             accumulator = !(inputs.get(variable));
-            System.out.println(accumulator);
         }
         
         if(operator.equals("ST")){
@@ -69,10 +67,6 @@ public class Interpreter {
             if(variable.charAt(0) == 'Q'){
                 outputs.put(variable, accumulator);
             }
-            
-            System.out.println(accumulator);
-            System.out.println(inputs);
-            System.out.println(outputs);
         }
         
         if(operator.equals("STN")){
@@ -83,10 +77,6 @@ public class Interpreter {
             if(variable.charAt(0) == 'Q'){
                 outputs.put(variable, !accumulator);
             }
-            
-            System.out.println(accumulator);
-            System.out.println(inputs);
-            System.out.println(outputs);
         }
         
         if(operator.equals("S")){
@@ -98,10 +88,6 @@ public class Interpreter {
                 if(variable.charAt(0) == 'Q'){
                     outputs.put(variable, true);
                 }
-
-                System.out.println(accumulator);
-                System.out.println(inputs);
-                System.out.println(outputs);
             }
         }
         
@@ -114,42 +100,35 @@ public class Interpreter {
                 if(variable.charAt(0) == 'Q'){
                     outputs.put(variable, false);
                 }
-
-                System.out.println(accumulator);
-                System.out.println(inputs);
-                System.out.println(outputs);
             }
         }
         
-        
         if(operator.equals("AND")){
             accumulator = (accumulator && inputs.get(variable));
-            System.out.println(accumulator);
         }
         
         if(operator.equals("ANDN")){
             accumulator = (accumulator && !(inputs.get(variable)));
-            System.out.println(accumulator);
         }
         
         if(operator.equals("OR")){
             accumulator = (accumulator || inputs.get(variable));
-            System.out.println(accumulator);
         }
         
         if(operator.equals("ORN")){
             accumulator = (accumulator || !(inputs.get(variable)));
-            System.out.println(accumulator);
         }
         
         if(operator.equals("XOR")){
             accumulator = !(Objects.equals(accumulator, inputs.get(variable)));
-            System.out.println(accumulator);
         }
         
         if(operator.equals("XORN")){
             accumulator = !(Objects.equals(accumulator, !inputs.get(variable)));
-            System.out.println(accumulator);
         }
+        
+        System.out.println(accumulator);
+        System.out.println(inputs);
+        System.out.println(outputs);
     }
 }

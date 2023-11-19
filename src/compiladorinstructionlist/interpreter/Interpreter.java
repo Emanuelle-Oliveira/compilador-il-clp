@@ -17,7 +17,7 @@ public class Interpreter {
         validOperators.add("STN");
         validOperators.add("AND");
         validOperators.add("ANDN");
-        validOperators.add("ORD");
+        validOperators.add("OR");
         validOperators.add("ORN");
     }
     
@@ -71,16 +71,48 @@ public class Interpreter {
         return isValid;
     }
     
+    public static boolean inputIsValid(String variable, Map<String, Boolean> inputs) {
+        Boolean isValid = true;
+        
+        if (inputs.get(variable) == null) {
+            isValid = false;
+            System.out.println("Entrada invalida");
+        }
+        return isValid;
+    }
+    
+    public static boolean outputIsValid(String variable, Map<String, Boolean> outputs) {
+        Boolean isValid = true;
+        
+        if (outputs.get(variable) == null) {
+            isValid = false;
+            System.out.println("Saida invalida");
+        }
+        return isValid;
+    }
+    
     public static Map executeInstruction(String operator, String variable, Map<String, Boolean> inputs, Map<String, Boolean> outputs) {
         
-        if(operatorIsValid(operator)) { 
+        if(operatorIsValid(operator) /*&& (inputIsValid(variable, inputs) || outputIsValid(variable, outputs))*/) { 
         
             if(operator.equals("LD")){
-                accumulator = inputs.get(variable);
+                if(variable.charAt(0) == 'I'){
+                    accumulator = inputs.get(variable);
+                }
+                
+                if(variable.charAt(0) == 'Q'){
+                    accumulator = outputs.get(variable);
+                }
             }
 
             if(operator.equals("LDN")){
-                accumulator = !(inputs.get(variable));
+                if(variable.charAt(0) == 'I'){
+                    accumulator = !(inputs.get(variable));
+                }
+                
+                if(variable.charAt(0) == 'Q'){
+                    accumulator = !(outputs.get(variable));
+                }
             }
 
             if(operator.equals("ST")){
@@ -104,19 +136,43 @@ public class Interpreter {
             }
 
             if(operator.equals("AND")){
-                accumulator = (accumulator && inputs.get(variable));
+                if(variable.charAt(0) == 'I'){
+                    accumulator = (accumulator && inputs.get(variable));
+                }
+                
+                if(variable.charAt(0) == 'Q'){
+                    accumulator = (accumulator && outputs.get(variable));
+                }
             }
 
             if(operator.equals("ANDN")){
-                accumulator = (accumulator && !(inputs.get(variable)));
+                if(variable.charAt(0) == 'I'){
+                    accumulator = (accumulator && !(inputs.get(variable)));
+                }
+                
+                if(variable.charAt(0) == 'Q'){
+                    accumulator = (accumulator && !(outputs.get(variable)));
+                }
             }
 
             if(operator.equals("OR")){
-                accumulator = (accumulator || inputs.get(variable));
+                if(variable.charAt(0) == 'I'){
+                    accumulator = (accumulator || inputs.get(variable));
+                }
+                
+                if(variable.charAt(0) == 'Q'){
+                    accumulator = (accumulator || outputs.get(variable));
+                }
             }
 
             if(operator.equals("ORN")){
-                accumulator = (accumulator || !(inputs.get(variable)));
+                if(variable.charAt(0) == 'I'){
+                    accumulator = (accumulator || !(inputs.get(variable)));
+                }
+                
+                if(variable.charAt(0) == 'Q'){
+                    accumulator = (accumulator || !(outputs.get(variable)));
+                }
             }
 
             System.out.println(accumulator);

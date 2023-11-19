@@ -34,65 +34,77 @@
               <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel1" min="-2" pref="440" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Component id="jb_run" min="-2" pref="60" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jb_stop" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="jScrollPane1" min="-2" pref="381" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jl_inputs" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Group type="102" attributes="0">
+                              <Component id="jb_run" min="-2" pref="70" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jb_stop" min="-2" pref="70" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jl_time" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jScrollPane1" min="-2" pref="381" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jl_input1" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="jl_input2" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="jl_input3" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="jl_input4" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="jl_input5" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="jl_input6" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="jl_input7" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="jl_input8" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="jl_inputs" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jl_input1" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="jl_input2" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="jl_input3" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="jl_input4" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="jl_input5" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="jl_input6" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="jl_input7" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="jl_input8" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jl_input1_value" pref="67" max="32767" attributes="0"/>
+                                          <Component id="jl_input2_value" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jl_input3_value" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jl_input4_value" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jl_input5_value" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jl_input6_value" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jl_input7_value" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jl_input8_value" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jl_input1_value" pref="67" max="32767" attributes="0"/>
-                                  <Component id="jl_input2_value" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jl_input3_value" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jl_input4_value" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jl_input5_value" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jl_input6_value" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jl_input7_value" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jl_input8_value" alignment="0" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jl_outputs" min="-2" pref="56" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jl_output1" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="jl_output2" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="jl_output3" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="jl_output4" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="jl_output5" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="jl_output6" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="jl_output7" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="jl_output8" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jl_output1_value" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jl_output2_value" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jl_output3_value" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jl_output4_value" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jl_output5_value" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jl_output6_value" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jl_output7_value" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jl_output8_value" alignment="0" min="-2" pref="67" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                           </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jl_outputs" min="-2" pref="56" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jl_output1" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="jl_output2" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="jl_output3" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="jl_output4" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="jl_output5" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="jl_output6" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="jl_output7" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="jl_output8" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jl_output1_value" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jl_output2_value" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jl_output3_value" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jl_output4_value" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jl_output5_value" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jl_output6_value" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jl_output7_value" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jl_output8_value" alignment="0" min="-2" pref="67" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="jt_time" min="-2" pref="58" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -104,10 +116,14 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="34" max="32767" attributes="0"/>
+              <EmptySpace pref="31" max="32767" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <EmptySpace pref="16" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jScrollPane1" min="-2" pref="349" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jl_inputs" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
@@ -186,13 +202,14 @@
                               <Component id="jl_output8_value" min="-2" pref="24" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" min="-2" pref="349" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jb_run" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jb_stop" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jl_time" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                  <Component id="jt_time" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
           </Group>
@@ -242,7 +259,7 @@
     <Component class="javax.swing.JButton" name="jb_run">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Lucida Console" size="14" style="0"/>
+          <Font name="Lucida Console" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Run"/>
       </Properties>
@@ -262,7 +279,7 @@
     <Component class="javax.swing.JButton" name="jb_stop">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Lucida Console" size="14" style="0"/>
+          <Font name="Lucida Console" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Stop"/>
       </Properties>
@@ -526,6 +543,31 @@
         </Property>
         <Property name="text" type="java.lang.String" value="false"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_time">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Tempo de Varredura (em ms):"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jt_time">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="0"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="1000"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
+          </Border>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jt_timeActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

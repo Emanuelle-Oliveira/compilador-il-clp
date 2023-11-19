@@ -1,7 +1,9 @@
 package compiladorinstructionlist.interpreter;
 
+import compiladorinstructionlist.memoryvariable.MemoryVariable;
 import compiladorinstructionlist.screen.InterfaceScreen;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +11,7 @@ public class Interpreter {
     
     static Boolean accumulator;
     static List<String> validOperators = new ArrayList<String>();
+    static Map<String, Boolean> memoryVariables = new HashMap<String, Boolean>();
     
     public static void initializeValidOperators() {
         validOperators.add("LD");
@@ -29,6 +32,7 @@ public class Interpreter {
         String variable = "";
         
         initializeValidOperators();
+        memoryVariables.clear();
         
         for (int i = 0; i < lineList.size(); i++) {
             for (int j = 0; j < lineList.get(i).length(); j++) {
@@ -91,9 +95,19 @@ public class Interpreter {
         return isValid;
     }
     
+    public static boolean memoryVariableIsValid(String variable) {
+        Boolean isValid = true;
+        
+        if (memoryVariables.get(variable) == null) {
+            isValid = false;
+            System.out.println("Variavel de memoria invalida");
+        }
+        return isValid;
+    }
+    
     public static Map executeInstruction(String operator, String variable, Map<String, Boolean> inputs, Map<String, Boolean> outputs) {
         
-        if(operatorIsValid(operator) /*&& (inputIsValid(variable, inputs) || outputIsValid(variable, outputs))*/) { 
+        if(operatorIsValid(operator) && (inputIsValid(variable, inputs) || outputIsValid(variable, outputs))) { 
         
             if(operator.equals("LD")){
                 if(variable.charAt(0) == 'I'){
@@ -178,6 +192,65 @@ public class Interpreter {
             System.out.println(accumulator);
             System.out.println(inputs);
             System.out.println(outputs); 
+        } else if(operatorIsValid(operator) && !inputIsValid(variable, inputs) && !outputIsValid(variable, outputs)){
+            if(operator.equals("ST") || operator.equals("STN")){
+                if(memoryVariableIsValid(variable)) {
+                    if(operator.equals("ST")){
+                        memoryVariables.put(variable, accumulator);
+                    }
+
+                    if(operator.equals("STN")){
+                        memoryVariables.put(variable, !accumulator);
+                    }
+                } else {
+                    if(operator.equals("ST")){
+                        MemoryVariable memoryVariable = new MemoryVariable(variable, accumulator);
+                        memoryVariables.put(memoryVariable.id, memoryVariable.currentValue);
+                    }
+
+                    if(operator.equals("STN")){
+                        MemoryVariable memoryVariable = new MemoryVariable(variable, !accumulator);
+                        memoryVariables.put(memoryVariable.id, memoryVariable.currentValue);
+                    }
+                }
+                System.out.println(accumulator);
+                System.out.println(inputs);
+                System.out.println(outputs); 
+                System.out.println(memoryVariables);
+            } else {
+                if(memoryVariableIsValid(variable)) {
+                    if(operator.equals("LD")){
+                        accumulator = memoryVariables.get(variable);
+                    }
+
+                    if(operator.equals("LDN")){
+                        accumulator = !(memoryVariables.get(variable));
+                    }
+                    
+                    if(operator.equals("AND")){
+                        accumulator = (accumulator && memoryVariables.get(variable));
+                    }
+
+                    if(operator.equals("ANDN")){
+                        accumulator = (accumulator && !(memoryVariables.get(variable)));
+                    }
+                    
+                    if(operator.equals("OR")){
+                        accumulator = (accumulator || memoryVariables.get(variable));
+                    }
+                    
+                    if(operator.equals("ORN")){
+                        accumulator = (accumulator || !(memoryVariables.get(variable)));
+                    }
+                    
+                    System.out.println(accumulator);
+                    System.out.println(inputs);
+                    System.out.println(outputs); 
+                    System.out.println(memoryVariables);
+                } else {
+                    InterfaceScreen.showErrorMessage();
+                }
+            }
         } else {
             InterfaceScreen.showErrorMessage();
         }

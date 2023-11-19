@@ -1,5 +1,6 @@
-package compiladorinstructionlist;
+package compiladorinstructionlist.output;
 
+import compiladorinstructionlist.output.Output;
 import java.util.Map;
 
 public class OutputActions {

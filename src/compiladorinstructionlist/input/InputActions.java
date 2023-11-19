@@ -1,4 +1,4 @@
-package compiladorinstructionlist;
+package compiladorinstructionlist.input;
 
 import java.util.Map;
 

@@ -1,10 +1,10 @@
-package compiladorinstructionlist;
+package compiladorinstructionlist.input;
 
-public class Output {
+public class Input {
     String id;
     Boolean currentValue;
 
-    public Output(String id, Boolean currentValue) {
+    public Input(String id, Boolean currentValue) {
         this.id = id;
         this.currentValue = currentValue;
     }
@@ -27,6 +27,6 @@ public class Output {
 
     @Override
     public String toString() {
-        return "Output{" + "id=" + id + ", currentValue=" + currentValue + '}';
-    }
+        return "Input{" + "id=" + id + ", currentValue=" + currentValue + '}';
+    }    
 }

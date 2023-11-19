@@ -1,4 +1,4 @@
-package compiladorinstructionlist;
+package compiladorinstructionlist.interpreter;
 
 import java.util.List;
 import java.util.Map;

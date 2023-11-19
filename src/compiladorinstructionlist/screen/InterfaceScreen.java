@@ -1,5 +1,8 @@
-package compiladorinstructionlist;
+package compiladorinstructionlist.screen;
 
+import compiladorinstructionlist.interpreter.Interpreter;
+import compiladorinstructionlist.output.OutputActions;
+import compiladorinstructionlist.input.InputActions;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

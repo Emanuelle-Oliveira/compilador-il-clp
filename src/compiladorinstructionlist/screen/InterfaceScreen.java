@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.text.BadLocationException;
 
 public class InterfaceScreen extends javax.swing.JFrame {
@@ -48,6 +49,10 @@ public class InterfaceScreen extends javax.swing.JFrame {
     public void updateScreen() {
         jl_showInputs.setText(inputs.toString());
         jl_showOutputs.setText(outputs.toString());
+    }
+    
+    public static void showErrorMessage() {
+        JOptionPane.showMessageDialog(null, "Sintaxe incorreta!");
     }
 
     @SuppressWarnings("unchecked")

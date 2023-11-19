@@ -3,6 +3,13 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="autoRequestFocus" type="boolean" value="false"/>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="ff" green="cc" red="cc" type="rgb"/>
+    </Property>
+    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+      <Color id="Default Cursor"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -26,35 +33,168 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jb_run" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" pref="440" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="jScrollPane1" min="-2" pref="339" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jl_showInputs" pref="210" max="32767" attributes="0"/>
-                          <Component id="jl_showOutputs" max="32767" attributes="0"/>
+                      <Component id="jb_run" min="-2" pref="60" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jb_stop" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="jScrollPane1" min="-2" pref="381" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jl_inputs" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jl_input1" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="jl_input2" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="jl_input3" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="jl_input4" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="jl_input5" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="jl_input6" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="jl_input7" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="jl_input8" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jl_input1_value" pref="67" max="32767" attributes="0"/>
+                                  <Component id="jl_input2_value" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jl_input3_value" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jl_input4_value" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jl_input5_value" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jl_input6_value" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jl_input7_value" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jl_input8_value" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jl_outputs" min="-2" pref="56" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jl_output1" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="jl_output2" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="jl_output3" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="jl_output4" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="jl_output5" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="jl_output6" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="jl_output7" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="jl_output8" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jl_output1_value" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jl_output2_value" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jl_output3_value" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jl_output4_value" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jl_output5_value" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jl_output6_value" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jl_output7_value" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jl_output8_value" alignment="0" min="-2" pref="67" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="49" max="32767" attributes="0"/>
+              <EmptySpace pref="53" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="34" max="32767" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jl_showInputs" min="-2" pref="38" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jl_showOutputs" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jl_inputs" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                          <Component id="jl_outputs" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jl_input1" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jl_input2" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jl_input3" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jl_input4" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jl_input5" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jl_input6" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jl_input7" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jl_input8" min="-2" pref="24" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jl_output1" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jl_output2" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jl_output3" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jl_output4" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jl_output5" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jl_output6" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jl_output7" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jl_output8" min="-2" pref="24" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="jl_input1_value" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jl_input2_value" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jl_input3_value" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jl_input4_value" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jl_input5_value" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jl_input6_value" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jl_input7_value" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jl_input8_value" min="-2" pref="24" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="jl_output1_value" min="-2" pref="24" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jl_output2_value" min="-2" pref="24" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jl_output3_value" min="-2" pref="24" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jl_output4_value" min="-2" pref="24" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jl_output5_value" min="-2" pref="24" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jl_output6_value" min="-2" pref="24" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jl_output7_value" min="-2" pref="24" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jl_output8_value" min="-2" pref="24" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
-                  <Component id="jScrollPane1" min="-2" pref="274" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="349" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jb_run" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="43" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jb_run" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jb_stop" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -70,29 +210,322 @@
         <Component class="javax.swing.JTextArea" name="jta_writeInstructions">
           <Properties>
             <Property name="columns" type="int" value="20"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Lucida Console" size="14" style="0"/>
+            </Property>
             <Property name="rows" type="int" value="5"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder/>
+              </Border>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="jl_showInputs">
+    <Component class="javax.swing.JLabel" name="jl_inputs">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Entradas"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Entradas:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jl_showOutputs">
+    <Component class="javax.swing.JLabel" name="jl_outputs">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Sa&#xed;das"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Sa&#xed;das:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jb_run">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Executar"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Run"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jb_runMouseClicked"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb_runActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="18" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Compilador: Lista de Instru&#xe7;&#xe3;o - CLP"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jb_stop">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Stop"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jb_stopMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb_stopActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_input1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="I1 ="/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_input2">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="I2 ="/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_input3">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="I3 ="/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_input4">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="I4 ="/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_input5">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="I5 ="/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_input6">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="I6 ="/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_input7">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="I7 ="/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_input8">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="I8 ="/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_output7">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Q7 ="/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_output8">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Q8 ="/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_output1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Q1 ="/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_output2">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Q2 ="/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_output3">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Q3 ="/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_output4">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Q4 ="/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_output5">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Q5 ="/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_output6">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Q6 ="/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_input7_value">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_input8_value">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_input1_value">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_input2_value">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_input3_value">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_input4_value">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_input5_value">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_input6_value">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_output7_value">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_output8_value">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_output1_value">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_output2_value">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_output3_value">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_output4_value">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_output5_value">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_output6_value">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Console" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="false"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

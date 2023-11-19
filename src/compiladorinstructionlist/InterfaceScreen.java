@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.text.BadLocationException;
 
 public class InterfaceScreen extends javax.swing.JFrame {
@@ -23,12 +22,10 @@ public class InterfaceScreen extends javax.swing.JFrame {
         inputs = InputActions.create(inputs);
         System.out.println(inputs);
         
-        jl_showInputs.setText(inputs.toString());
-        
         outputs = OutputActions.create(outputs);
         System.out.println(outputs);
-      
-        jl_showOutputs.setText(outputs.toString());
+ 
+        updateScreen();
         
         //Início: laço de execução (com tempo de varredura)
         
@@ -40,7 +37,14 @@ public class InterfaceScreen extends javax.swing.JFrame {
         outputs = OutputActions.write(outputs);
         System.out.println(outputs);
         
+        updateScreen();
+        
         // Fim: laço de execução
+    }
+    
+    public void updateScreen() {
+        jl_showInputs.setText(inputs.toString());
+        jl_showOutputs.setText(outputs.toString());
     }
 
     @SuppressWarnings("unchecked")
@@ -115,15 +119,14 @@ public class InterfaceScreen extends javax.swing.JFrame {
 
     private void jb_runMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_runMouseClicked
         System.out.println("Botão clicado");
-        jl_showInputs.setText(inputs.toString());
-        jl_showOutputs.setText(outputs.toString());
-        
+
+        updateScreen();
         
         List<String> lineList = new ArrayList<String>();
         lineList = saveLines(lineList);
         
         outputs = Interpreter.receiveLines(lineList, inputs, outputs);
-        jl_showOutputs.setText(outputs.toString());
+        updateScreen();
     }//GEN-LAST:event_jb_runMouseClicked
 
     private List<String> saveLines(List<String> lineList) {

@@ -2,7 +2,6 @@ package compiladorinstructionlist;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class Interpreter {
     
@@ -117,14 +116,6 @@ public class Interpreter {
         
         if(operator.equals("ORN")){
             accumulator = (accumulator || !(inputs.get(variable)));
-        }
-        
-        if(operator.equals("XOR")){
-            accumulator = !(Objects.equals(accumulator, inputs.get(variable)));
-        }
-        
-        if(operator.equals("XORN")){
-            accumulator = !(Objects.equals(accumulator, !inputs.get(variable)));
         }
         
         System.out.println(accumulator);

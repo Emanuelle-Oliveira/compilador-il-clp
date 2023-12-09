@@ -8,6 +8,5 @@ public class CompiladorInstructionList {
         InterfaceScreen screen = new InterfaceScreen();
         screen.setVisible(true);
         screen.setLocationRelativeTo(null);
-    }
-    
+    } 
 }

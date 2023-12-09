@@ -11,7 +11,7 @@ public class Interpreter {
     
     static Boolean accumulator;
     static List<String> validOperators = new ArrayList<String>();
-    static Map<String, Boolean> memoryVariables = new HashMap<String, Boolean>();
+    
     
     public static void initializeValidOperators() {
         validOperators.add("LD");
@@ -24,7 +24,7 @@ public class Interpreter {
         validOperators.add("ORN");
     }
     
-    public static Map receiveLines(List<String> lineList, Map<String, Boolean> inputs, Map<String, Boolean> outputs) {
+    public static Map receiveLines(List<String> lineList, Map<String, Boolean> inputs, Map<String, Boolean> outputs, Map<String, Boolean> memoryVariables) {
         
         char character = '-';
         Boolean spaceDetected = false;
@@ -32,6 +32,7 @@ public class Interpreter {
         String variable = "";
         
         initializeValidOperators();
+        
         memoryVariables.clear();
         
         for (int i = 0; i < lineList.size(); i++) {
@@ -56,7 +57,7 @@ public class Interpreter {
             System.out.println("Operador: " + operator);
             System.out.println("Variável: " + variable);
             
-            outputs = executeInstruction(operator, variable, inputs, outputs);
+            outputs = executeInstruction(operator, variable, inputs, outputs, memoryVariables);
             
             spaceDetected = false;
             operator = "";
@@ -80,7 +81,7 @@ public class Interpreter {
         
         if (inputs.get(variable) == null) {
             isValid = false;
-            System.out.println("Entrada invalida");
+            System.out.println("Entrada inválida!");
         }
         return isValid;
     }
@@ -90,22 +91,22 @@ public class Interpreter {
         
         if (outputs.get(variable) == null) {
             isValid = false;
-            System.out.println("Saida invalida");
+            System.out.println("Saída inválida!");
         }
         return isValid;
     }
     
-    public static boolean memoryVariableIsValid(String variable) {
+    public static boolean memoryVariableIsValid(String variable, Map<String, Boolean> memoryVariables) {
         Boolean isValid = true;
         
         if (memoryVariables.get(variable) == null) {
             isValid = false;
-            System.out.println("Variavel de memoria invalida");
+            System.out.println("Variável de memória inválida!");
         }
         return isValid;
     }
     
-    public static Map executeInstruction(String operator, String variable, Map<String, Boolean> inputs, Map<String, Boolean> outputs) {
+    public static Map executeInstruction(String operator, String variable, Map<String, Boolean> inputs, Map<String, Boolean> outputs, Map<String, Boolean> memoryVariables) {
         
         if(operatorIsValid(operator) && (inputIsValid(variable, inputs) || outputIsValid(variable, outputs))) { 
         
@@ -194,7 +195,7 @@ public class Interpreter {
             System.out.println(outputs); 
         } else if(operatorIsValid(operator) && !inputIsValid(variable, inputs) && !outputIsValid(variable, outputs)){
             if(operator.equals("ST") || operator.equals("STN")){
-                if(memoryVariableIsValid(variable)) {
+                if(memoryVariableIsValid(variable, memoryVariables)) {
                     if(operator.equals("ST")){
                         memoryVariables.put(variable, accumulator);
                     }
@@ -218,7 +219,7 @@ public class Interpreter {
                 System.out.println(outputs); 
                 System.out.println(memoryVariables);
             } else {
-                if(memoryVariableIsValid(variable)) {
+                if(memoryVariableIsValid(variable, memoryVariables)) {
                     if(operator.equals("LD")){
                         accumulator = memoryVariables.get(variable);
                     }

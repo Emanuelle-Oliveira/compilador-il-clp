@@ -1,5 +1,6 @@
 package compiladorinstructionlist.input;
 
+// 
 public class Input {
     String id;
     Boolean currentValue;

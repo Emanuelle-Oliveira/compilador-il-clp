@@ -16,8 +16,11 @@ import javax.swing.text.BadLocationException;
 
 public class InterfaceScreen extends javax.swing.JFrame {
     
+    
     Map<String, Boolean> inputs;
     Map<String, Boolean> outputs;
+    static Map<String, Boolean> memoryVariables = new HashMap<String, Boolean>();
+    Integer mode = 1;
     
     public InterfaceScreen() {
         initComponents();
@@ -30,6 +33,13 @@ public class InterfaceScreen extends javax.swing.JFrame {
         jb_stop.setContentAreaFilled(false);
         jb_stop.setOpaque(true);
         jb_stop.setBackground(Color.red);
+        
+        jb_program.setContentAreaFilled(false);
+        jb_program.setOpaque(true);
+        jb_program.setBackground(Color.yellow);
+        
+        jta_memory_variables.setEditable(false);
+        jta_writeInstructions.setEditable(true);
         
         inputs = new HashMap<>();
         outputs = new HashMap<>();
@@ -115,6 +125,32 @@ public class InterfaceScreen extends javax.swing.JFrame {
         setColor(outputs.get("Q8"), jl_output8_value);
     }
     
+    public void updateMode() {
+        if(mode == 1) {
+            jl_mode_value.setText("Program");
+            jta_writeInstructions.setEditable(true);
+            
+        } else if (mode == 2) {
+            jl_mode_value.setText("Stop");
+            jta_writeInstructions.setEditable(false);
+        } else {
+            jl_mode_value.setText("Run");
+            jta_writeInstructions.setEditable(false);
+        }
+    }
+    
+    public void updateMemoryVariables() {
+        jta_memory_variables.setText("");
+
+        String line = "";
+
+        for (Map.Entry<String, Boolean> variable : memoryVariables.entrySet()) {
+            line = variable.getKey() + " = " + variable.getValue() + "\n";
+
+            jta_memory_variables.setText(jta_memory_variables.getText() + line);
+        }
+    }
+    
     public static void showErrorMessage() {
         JOptionPane.showMessageDialog(null, "Sintaxe incorreta!");
     }
@@ -164,6 +200,12 @@ public class InterfaceScreen extends javax.swing.JFrame {
         jl_output6_value = new javax.swing.JLabel();
         jl_time = new javax.swing.JLabel();
         jt_time = new javax.swing.JTextField();
+        jb_program = new javax.swing.JButton();
+        jl_mode = new javax.swing.JLabel();
+        jl_mode_value = new javax.swing.JLabel();
+        jl_memorie_variables = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jta_memory_variables = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -308,7 +350,7 @@ public class InterfaceScreen extends javax.swing.JFrame {
         jl_output6_value.setText("false");
 
         jl_time.setFont(new java.awt.Font("Lucida Console", 0, 12)); // NOI18N
-        jl_time.setText("Tempo de Varredura (em ms):");
+        jl_time.setText("Tempo de Delay (em ms):");
 
         jt_time.setFont(new java.awt.Font("Lucida Console", 0, 12)); // NOI18N
         jt_time.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -320,6 +362,32 @@ public class InterfaceScreen extends javax.swing.JFrame {
             }
         });
 
+        jb_program.setFont(new java.awt.Font("Lucida Console", 1, 14)); // NOI18N
+        jb_program.setText("Program");
+        jb_program.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_programMouseClicked(evt);
+            }
+        });
+        jb_program.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_programActionPerformed(evt);
+            }
+        });
+
+        jl_mode.setFont(new java.awt.Font("Lucida Console", 0, 12)); // NOI18N
+        jl_mode.setText("Modo atual:");
+
+        jl_mode_value.setFont(new java.awt.Font("Lucida Console", 0, 12)); // NOI18N
+        jl_mode_value.setText("Program");
+
+        jl_memorie_variables.setFont(new java.awt.Font("Lucida Console", 1, 12)); // NOI18N
+        jl_memorie_variables.setText("Variáveis de Memória:");
+
+        jta_memory_variables.setColumns(20);
+        jta_memory_variables.setRows(5);
+        jScrollPane2.setViewportView(jta_memory_variables);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -327,19 +395,30 @@ public class InterfaceScreen extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jb_run, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jb_stop, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jl_time))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jb_run, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jb_stop, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jb_program)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jl_mode)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jl_mode_value))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(34, 34, 34)
+                                .addComponent(jl_time)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jt_time, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jl_inputs, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
@@ -354,14 +433,14 @@ public class InterfaceScreen extends javax.swing.JFrame {
                                             .addComponent(jl_input8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jl_input1_value, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+                                            .addComponent(jl_input1_value, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jl_input2_value, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jl_input3_value, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jl_input4_value, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jl_input5_value, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jl_input6_value, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jl_input7_value, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jl_input8_value, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                            .addComponent(jl_input8_value, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(46, 46, 46)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jl_outputs, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -385,22 +464,31 @@ public class InterfaceScreen extends javax.swing.JFrame {
                                             .addComponent(jl_output6_value, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jl_output7_value, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jl_output8_value, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jt_time, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(53, Short.MAX_VALUE))
+                            .addComponent(jl_memorie_variables, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2))
+                        .addGap(64, 64, 64))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jl_time, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jt_time, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jb_run)
+                            .addComponent(jb_stop)
+                            .addComponent(jb_program)
+                            .addComponent(jl_mode, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jl_mode_value, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jl_inputs, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jl_outputs, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -471,13 +559,11 @@ public class InterfaceScreen extends javax.swing.JFrame {
                                 .addComponent(jl_output7_value, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jl_output8_value, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(30, 30, 30)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jb_run)
-                    .addComponent(jb_stop)
-                    .addComponent(jl_time, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jt_time, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24))
+                        .addGap(18, 18, 18)
+                        .addComponent(jl_memorie_variables, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
@@ -488,7 +574,7 @@ public class InterfaceScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_runActionPerformed
 
     private void jb_runMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_runMouseClicked
-        System.out.println("Botão clicado");
+        System.out.println("Run clicado");
         
         String stringTime = jt_time.getText();
         
@@ -497,22 +583,27 @@ public class InterfaceScreen extends javax.swing.JFrame {
         try {
             time = Integer. parseInt(stringTime);
         } catch(NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Tempo de varredura inválido! Insira um número inteiro.");
+            JOptionPane.showMessageDialog(null, "Tempo de delay inválido! Insira um número inteiro.");
         }
         
         System.out.println(time);
 
         updateScreen();
         
+        mode = 3;
+        updateMode();
+        
         List<String> lineList = new ArrayList<String>();
         lineList = saveLines(lineList);
         
-        outputs = Interpreter.receiveLines(lineList, inputs, outputs);
+        outputs = Interpreter.receiveLines(lineList, inputs, outputs, memoryVariables);
         updateScreen();
+        updateMemoryVariables();
     }//GEN-LAST:event_jb_runMouseClicked
 
     private void jb_stopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_stopMouseClicked
-        // TODO add your handling code here:
+        mode = 2;
+        updateMode();
     }//GEN-LAST:event_jb_stopMouseClicked
 
     private void jb_stopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_stopActionPerformed
@@ -522,6 +613,15 @@ public class InterfaceScreen extends javax.swing.JFrame {
     private void jt_timeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jt_timeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jt_timeActionPerformed
+
+    private void jb_programMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_programMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jb_programMouseClicked
+
+    private void jb_programActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_programActionPerformed
+        mode = 1;
+        updateMode();
+    }//GEN-LAST:event_jb_programActionPerformed
 
     private List<String> saveLines(List<String> lineList) {
         int quant = jta_writeInstructions.getLineCount();
@@ -574,6 +674,8 @@ public class InterfaceScreen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton jb_program;
     private javax.swing.JButton jb_run;
     private javax.swing.JButton jb_stop;
     private javax.swing.JLabel jl_input1;
@@ -593,6 +695,9 @@ public class InterfaceScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jl_input8;
     private javax.swing.JLabel jl_input8_value;
     private javax.swing.JLabel jl_inputs;
+    private javax.swing.JLabel jl_memorie_variables;
+    private javax.swing.JLabel jl_mode;
+    private javax.swing.JLabel jl_mode_value;
     private javax.swing.JLabel jl_output1;
     private javax.swing.JLabel jl_output1_value;
     private javax.swing.JLabel jl_output2;
@@ -612,6 +717,7 @@ public class InterfaceScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jl_outputs;
     private javax.swing.JLabel jl_time;
     private javax.swing.JTextField jt_time;
+    private javax.swing.JTextArea jta_memory_variables;
     private javax.swing.JTextArea jta_writeInstructions;
     // End of variables declaration//GEN-END:variables
 }

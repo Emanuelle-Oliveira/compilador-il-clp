@@ -1,5 +1,6 @@
 package compiladorinstructionlist.output;
 
+// Classe saída
 public class Output {
     String id;
     Boolean currentValue;

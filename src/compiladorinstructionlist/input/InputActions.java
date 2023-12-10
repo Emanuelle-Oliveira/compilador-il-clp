@@ -2,6 +2,7 @@ package compiladorinstructionlist.input;
 
 import java.util.Map;
 
+// Classe para as ações relacionadas com as entradas
 public class InputActions {
     
     public static Map create(Map inputs) {

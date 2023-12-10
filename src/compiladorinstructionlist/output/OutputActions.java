@@ -1,8 +1,8 @@
 package compiladorinstructionlist.output;
 
-import compiladorinstructionlist.output.Output;
 import java.util.Map;
 
+// Classe para as ações relacionadas com as saídas
 public class OutputActions {
     
     public static Map create(Map outputs) {

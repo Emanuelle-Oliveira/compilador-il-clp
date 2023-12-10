@@ -14,15 +14,17 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.text.BadLocationException;
 
+// Classe da tela
 public class InterfaceScreen extends javax.swing.JFrame {
-    
-    
+
+    // Cria variáveis
     Map<String, Boolean> inputs;
     Map<String, Boolean> outputs;
     static Map<String, Boolean> memoryVariables = new HashMap<String, Boolean>();
-    Integer mode = 1;
+    static Integer mode = 1;
     
     public InterfaceScreen() {
+        // Configuraçõs da view
         initComponents();
         getContentPane().setBackground(Color.white);
         
@@ -39,34 +41,24 @@ public class InterfaceScreen extends javax.swing.JFrame {
         jb_program.setBackground(Color.yellow);
         
         jta_memory_variables.setEditable(false);
+        
         jta_writeInstructions.setEditable(true);
         
+        //Inicializa entradas e saídas
         inputs = new HashMap<>();
         outputs = new HashMap<>();
         
         inputs = InputActions.create(inputs);
-        System.out.println(inputs);
+        System.out.println("HashMap de entradas criado:" + inputs);
         
         outputs = OutputActions.create(outputs);
-        System.out.println(outputs);
+        System.out.println("HashMap de saídas criado:" + outputs);
  
+        // Atualiza entradas e saídas na tela
         updateScreen();
-        
-        //Início: laço de execução (com tempo de varredura)
-        
-        inputs = InputActions.read(inputs);
-        System.out.println(inputs);
-        
-        // Executa as instruções
-        
-        outputs = OutputActions.write(outputs);
-        System.out.println(outputs);
-        
-        updateScreen();
-        
-        // Fim: laço de execução
     }
     
+    // Define a cor dos valores ("true" e "false") das entradas e saídas na tela
     public void setColor(Boolean value, JLabel label) {
         if(value) {
             label.setForeground(Color.green);
@@ -75,6 +67,7 @@ public class InterfaceScreen extends javax.swing.JFrame {
         }
     }
     
+    // Atualiza entradas e saídas na tela
     public void updateScreen() {
         jl_input1_value.setText(inputs.get("I1").toString());
         setColor(inputs.get("I1"), jl_input1_value);
@@ -125,6 +118,7 @@ public class InterfaceScreen extends javax.swing.JFrame {
         setColor(outputs.get("Q8"), jl_output8_value);
     }
     
+    // Atualiza o modo atual na tela
     public void updateMode() {
         if(mode == 1) {
             jl_mode_value.setText("Program");
@@ -139,6 +133,7 @@ public class InterfaceScreen extends javax.swing.JFrame {
         }
     }
     
+    // Atualiza as variáveis de memória na tela
     public void updateMemoryVariables() {
         jta_memory_variables.setText("");
 
@@ -146,12 +141,13 @@ public class InterfaceScreen extends javax.swing.JFrame {
 
         for (Map.Entry<String, Boolean> variable : memoryVariables.entrySet()) {
             line = variable.getKey() + " = " + variable.getValue() + "\n";
-
             jta_memory_variables.setText(jta_memory_variables.getText() + line);
         }
     }
     
+    // Mostra mensagem de erro na tela
     public static void showErrorMessage() {
+        mode = 1;
         JOptionPane.showMessageDialog(null, "Sintaxe incorreta!");
     }
 
@@ -159,8 +155,6 @@ public class InterfaceScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jta_writeInstructions = new javax.swing.JTextArea();
         jl_inputs = new javax.swing.JLabel();
         jl_outputs = new javax.swing.JLabel();
         jb_run = new javax.swing.JButton();
@@ -206,17 +200,13 @@ public class InterfaceScreen extends javax.swing.JFrame {
         jl_memorie_variables = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jta_memory_variables = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jta_writeInstructions = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
         setBackground(new java.awt.Color(204, 204, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jta_writeInstructions.setColumns(20);
-        jta_writeInstructions.setFont(new java.awt.Font("Lucida Console", 0, 14)); // NOI18N
-        jta_writeInstructions.setRows(5);
-        jta_writeInstructions.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jScrollPane1.setViewportView(jta_writeInstructions);
 
         jl_inputs.setFont(new java.awt.Font("Lucida Console", 1, 12)); // NOI18N
         jl_inputs.setText("Entradas:");
@@ -375,18 +365,26 @@ public class InterfaceScreen extends javax.swing.JFrame {
             }
         });
 
-        jl_mode.setFont(new java.awt.Font("Lucida Console", 0, 12)); // NOI18N
+        jl_mode.setFont(new java.awt.Font("Lucida Console", 0, 14)); // NOI18N
         jl_mode.setText("Modo atual:");
 
-        jl_mode_value.setFont(new java.awt.Font("Lucida Console", 0, 12)); // NOI18N
+        jl_mode_value.setFont(new java.awt.Font("Lucida Console", 1, 14)); // NOI18N
         jl_mode_value.setText("Program");
 
         jl_memorie_variables.setFont(new java.awt.Font("Lucida Console", 1, 12)); // NOI18N
         jl_memorie_variables.setText("Variáveis de Memória:");
 
         jta_memory_variables.setColumns(20);
+        jta_memory_variables.setFont(new java.awt.Font("Lucida Console", 0, 12)); // NOI18N
         jta_memory_variables.setRows(5);
+        jta_memory_variables.setMargin(new java.awt.Insets(10, 10, 10, 10));
         jScrollPane2.setViewportView(jta_memory_variables);
+
+        jta_writeInstructions.setColumns(20);
+        jta_writeInstructions.setFont(new java.awt.Font("Lucida Console", 0, 14)); // NOI18N
+        jta_writeInstructions.setRows(5);
+        jta_writeInstructions.setMargin(new java.awt.Insets(10, 10, 10, 10));
+        jScrollPane3.setViewportView(jta_writeInstructions);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -398,25 +396,24 @@ public class InterfaceScreen extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jb_run, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jb_stop, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jb_program)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jl_mode)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jl_mode_value))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jb_run, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jb_stop, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jb_program)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jl_mode)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jl_mode_value))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jl_time)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jt_time, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                                .addComponent(jt_time, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -465,8 +462,8 @@ public class InterfaceScreen extends javax.swing.JFrame {
                                             .addComponent(jl_output7_value, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jl_output8_value, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addComponent(jl_memorie_variables, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2))
-                        .addGap(64, 64, 64))))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(55, 55, 55))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -476,8 +473,8 @@ public class InterfaceScreen extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jl_time, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jt_time, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -488,7 +485,7 @@ public class InterfaceScreen extends javax.swing.JFrame {
                             .addComponent(jb_program)
                             .addComponent(jl_mode, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jl_mode_value, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jl_inputs, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jl_outputs, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -569,60 +566,42 @@ public class InterfaceScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // Função que é executada quando o botão run é clicado
     private void jb_runActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_runActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jb_runActionPerformed
-
-    private void jb_runMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_runMouseClicked
-        System.out.println("Run clicado");
+        System.out.println("\nRun clicado!");
+        mode = 3;
         
+        // Verificando tempo de delay
         String stringTime = jt_time.getText();
         
-        Integer time = 0;
-        
-        try {
-            time = Integer. parseInt(stringTime);
-        } catch(NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Tempo de delay inválido! Insira um número inteiro.");
+        if(!stringTime.equals("")) {
+            Integer time = 0;
+
+            try {
+                time = Integer. parseInt(stringTime);
+            } catch(NumberFormatException e) {
+                mode = 1;
+                updateMode();
+                JOptionPane.showMessageDialog(null, "Tempo de delay inválido! Insira um número inteiro.");
+            }
+            
+            System.out.println("Tempo de delay: " + time + "\n");
         }
         
-        System.out.println(time);
-
-        updateScreen();
-        
-        mode = 3;
-        updateMode();
-        
+        // Salva linhas da área de texto
         List<String> lineList = new ArrayList<String>();
         lineList = saveLines(lineList);
         
+        // Chama o interpretador que retorna as saídas
         outputs = Interpreter.receiveLines(lineList, inputs, outputs, memoryVariables);
+        
+        // Atualiza tela
         updateScreen();
+        updateMode();
         updateMemoryVariables();
-    }//GEN-LAST:event_jb_runMouseClicked
+    }//GEN-LAST:event_jb_runActionPerformed
 
-    private void jb_stopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_stopMouseClicked
-        mode = 2;
-        updateMode();
-    }//GEN-LAST:event_jb_stopMouseClicked
-
-    private void jb_stopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_stopActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jb_stopActionPerformed
-
-    private void jt_timeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jt_timeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jt_timeActionPerformed
-
-    private void jb_programMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_programMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jb_programMouseClicked
-
-    private void jb_programActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_programActionPerformed
-        mode = 1;
-        updateMode();
-    }//GEN-LAST:event_jb_programActionPerformed
-
+    // Salva linhas da área de texto e retorna lista de linhas
     private List<String> saveLines(List<String> lineList) {
         int quant = jta_writeInstructions.getLineCount();
         
@@ -637,10 +616,38 @@ public class InterfaceScreen extends javax.swing.JFrame {
             }
         }
         
-        System.out.println(lineList);
+        System.out.println("Lista de linhas: " + lineList + "\n");
         return lineList;
     }
     
+    private void jb_runMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_runMouseClicked
+
+    }//GEN-LAST:event_jb_runMouseClicked
+
+    private void jb_stopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_stopMouseClicked
+
+    }//GEN-LAST:event_jb_stopMouseClicked
+    
+    // Função que é executada quando o botão stop é clicado
+    private void jb_stopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_stopActionPerformed
+        mode = 2;
+        updateMode();
+    }//GEN-LAST:event_jb_stopActionPerformed
+
+    private void jt_timeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jt_timeActionPerformed
+
+    }//GEN-LAST:event_jt_timeActionPerformed
+
+    private void jb_programMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_programMouseClicked
+
+    }//GEN-LAST:event_jb_programMouseClicked
+
+    // Função que é executada quando o botão program é clicado
+    private void jb_programActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_programActionPerformed
+        mode = 1;
+        updateMode();
+    }//GEN-LAST:event_jb_programActionPerformed
+
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -673,8 +680,8 @@ public class InterfaceScreen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton jb_program;
     private javax.swing.JButton jb_run;
     private javax.swing.JButton jb_stop;

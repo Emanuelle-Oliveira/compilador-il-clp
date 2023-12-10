@@ -1,5 +1,6 @@
 package compiladorinstructionlist.memoryvariable;
 
+// Classe variável de memória
 public class MemoryVariable {
     public String id;
     public  Boolean currentValue;

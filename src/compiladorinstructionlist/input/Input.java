@@ -1,6 +1,6 @@
 package compiladorinstructionlist.input;
 
-// 
+// Classe entrada
 public class Input {
     String id;
     Boolean currentValue;

@@ -29,6 +29,25 @@ public class InputActions {
         return inputs;
     }
     
+    // "Simula" leitura
+    public static Map<String, Boolean> dummyRead(Map inputs) {
+        // Lê os valores de cada entrada vindos do módulo
+        // ...
+        
+        // Atualiza no hash
+        inputs.put("I1", true);
+        inputs.put("I2", false);
+        inputs.put("I3", false);
+        inputs.put("I4", false);
+        inputs.put("I5", true);
+        inputs.put("I6", false);
+        inputs.put("I7", false);
+        inputs.put("I8", false);
+        
+        return inputs;
+    }
+       
+    // Leitura
     public static Map read(Map inputs) {
         // Lê os valores de cada entrada vindos do módulo
         // ...

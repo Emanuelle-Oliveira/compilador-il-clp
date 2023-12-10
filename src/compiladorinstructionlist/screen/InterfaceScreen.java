@@ -5,6 +5,8 @@ import compiladorinstructionlist.output.OutputActions;
 import compiladorinstructionlist.input.InputActions;
 import compiladorinstructionlist.uppercasedocumentfilter.UpperCaseDocumentFilter;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.BadLocationException;
 
@@ -26,26 +29,26 @@ public class InterfaceScreen extends javax.swing.JFrame {
     Map<String, Boolean> outputs;
     static Map<String, Boolean> memoryVariables = new HashMap<String, Boolean>();
     static Integer mode = 1;
-    
+
     public InterfaceScreen() {
         // Configuraçõs da view
         initComponents();
         getContentPane().setBackground(Color.white);
-        
+
         jb_run.setContentAreaFilled(false);
         jb_run.setOpaque(true);
         jb_run.setBackground(Color.green);
-        
+
         jb_stop.setContentAreaFilled(false);
         jb_stop.setOpaque(true);
         jb_stop.setBackground(Color.red);
-        
+
         jb_program.setContentAreaFilled(false);
         jb_program.setOpaque(true);
         jb_program.setBackground(Color.yellow);
-        
+
         jta_memory_variables.setEditable(false);
-        
+
         jta_writeInstructions.setEditable(true);
         // Transforma letras minúsculas em maiúsculas
         AbstractDocument doc = (AbstractDocument) jta_writeInstructions.getDocument();
@@ -70,83 +73,83 @@ public class InterfaceScreen extends javax.swing.JFrame {
         //Inicializa entradas e saídas
         inputs = new HashMap<>();
         outputs = new HashMap<>();
-        
+
         inputs = InputActions.create(inputs);
         System.out.println("HashMap de entradas criado:" + inputs);
-        
+
         outputs = OutputActions.create(outputs);
         System.out.println("HashMap de saídas criado:" + outputs);
- 
+
         // Atualiza entradas e saídas na tela
         updateScreen();
     }
-    
+
     // Define a cor dos valores ("true" e "false") das entradas e saídas na tela
     public void setColor(Boolean value, JLabel label) {
-        if(value) {
+        if (value) {
             label.setForeground(Color.green);
         } else {
             label.setForeground(Color.red);
         }
     }
-    
+
     // Atualiza entradas e saídas na tela
     public void updateScreen() {
         jl_input1_value.setText(inputs.get("I1").toString());
         setColor(inputs.get("I1"), jl_input1_value);
-        
+
         jl_input2_value.setText(inputs.get("I2").toString());
         setColor(inputs.get("I2"), jl_input2_value);
-        
+
         jl_input3_value.setText(inputs.get("I3").toString());
         setColor(inputs.get("I3"), jl_input3_value);
-        
+
         jl_input4_value.setText(inputs.get("I4").toString());
         setColor(inputs.get("I4"), jl_input4_value);
 
         jl_input5_value.setText(inputs.get("I5").toString());
         setColor(inputs.get("I5"), jl_input5_value);
-        
+
         jl_input6_value.setText(inputs.get("I6").toString());
         setColor(inputs.get("I6"), jl_input6_value);
-        
+
         jl_input7_value.setText(inputs.get("I7").toString());
         setColor(inputs.get("I7"), jl_input7_value);
-        
+
         jl_input8_value.setText(inputs.get("I8").toString());
         setColor(inputs.get("I8"), jl_input8_value);
-        
+
         jl_output1_value.setText(outputs.get("Q1").toString());
         setColor(outputs.get("Q1"), jl_output1_value);
-        
+
         jl_output2_value.setText(outputs.get("Q2").toString());
         setColor(outputs.get("Q2"), jl_output2_value);
-        
+
         jl_output3_value.setText(outputs.get("Q3").toString());
         setColor(outputs.get("Q3"), jl_output3_value);
-        
+
         jl_output4_value.setText(outputs.get("Q4").toString());
         setColor(outputs.get("Q4"), jl_output4_value);
-        
+
         jl_output5_value.setText(outputs.get("Q5").toString());
         setColor(outputs.get("Q5"), jl_output5_value);
-        
+
         jl_output6_value.setText(outputs.get("Q6").toString());
         setColor(outputs.get("Q6"), jl_output6_value);
-        
+
         jl_output7_value.setText(outputs.get("Q7").toString());
         setColor(outputs.get("Q7"), jl_output7_value);
-        
+
         jl_output8_value.setText(outputs.get("Q8").toString());
         setColor(outputs.get("Q8"), jl_output8_value);
     }
-    
+
     // Atualiza o modo atual na tela
     public void updateMode() {
-        if(mode == 1) {
+        System.out.println(mode);
+        if (mode == 1) {
             jl_mode_value.setText("Program");
             jta_writeInstructions.setEditable(true);
-            
         } else if (mode == 2) {
             jl_mode_value.setText("Stop");
             jta_writeInstructions.setEditable(false);
@@ -155,7 +158,7 @@ public class InterfaceScreen extends javax.swing.JFrame {
             jta_writeInstructions.setEditable(false);
         }
     }
-    
+
     // Atualiza as variáveis de memória na tela
     public void updateMemoryVariables() {
         jta_memory_variables.setText("");
@@ -167,7 +170,7 @@ public class InterfaceScreen extends javax.swing.JFrame {
             jta_memory_variables.setText(jta_memory_variables.getText() + line);
         }
     }
-    
+
     // Mostra mensagem de erro na tela
     public static void showErrorMessage(String message) {
         mode = 1;
@@ -593,42 +596,54 @@ public class InterfaceScreen extends javax.swing.JFrame {
     private void jb_runActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_runActionPerformed
         System.out.println("\nBotão run clicado!");
         mode = 3;
-        
+
         // Verificando tempo de delay
         String stringTime = jt_time.getText();
-        
-        if(!stringTime.equals("")) {
-            Integer time = 0;
+        Integer time = 0;
 
+        if (!stringTime.equals("")) {
             try {
-                time = Integer. parseInt(stringTime);
-            } catch(NumberFormatException e) {
+                time = Integer.parseInt(stringTime);
+            } catch (NumberFormatException e) {
                 mode = 1;
                 updateMode();
                 showErrorMessage("Tempo de delay inválido! Insira um número inteiro.");
             }
-            
+
             System.out.println("Tempo de delay: " + time + "\n");
         }
-        
-        // Salva linhas da área de texto
-        List<String> lineList = new ArrayList<String>();
-        lineList = saveLines(lineList);
-        
-        // Chama o interpretador que retorna as saídas
-        outputs = Interpreter.receiveLines(lineList, inputs, outputs, memoryVariables);
-        
-        // Atualiza tela
-        updateScreen();
-        updateMode();
-        updateMemoryVariables();
+
+        Timer timer = new Timer(time, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                // Salva linhas da área de texto
+                List<String> lineList = new ArrayList<String>();
+                lineList = saveLines(lineList);
+
+                if (mode == 3) {
+                    inputs = InputActions.dummyRead(inputs);
+                    outputs = Interpreter.receiveLines(lineList, inputs, outputs, memoryVariables);
+                    outputs = OutputActions.dummyWrite(outputs);
+                    updateMode();
+                    updateScreen();
+                    updateMemoryVariables();
+                } else {
+                    ((Timer) evt.getSource()).stop();
+                }
+            }
+        });
+
+        //Início: laço de execução
+        timer.setInitialDelay(0); // começa sem atraso
+        timer.start();
+        // Fim: laço de execução
     }//GEN-LAST:event_jb_runActionPerformed
 
     // Salva linhas da área de texto e retorna lista de linhas
     private List<String> saveLines(List<String> lineList) {
         int quant = jta_writeInstructions.getLineCount();
-        
-        for(int i = 0; i < quant; i++){
+
+        for (int i = 0; i < quant; i++) {
             try {
                 Integer start = jta_writeInstructions.getLineStartOffset(i);
                 Integer end = jta_writeInstructions.getLineEndOffset(i);
@@ -638,11 +653,11 @@ public class InterfaceScreen extends javax.swing.JFrame {
                 Logger.getLogger(InterfaceScreen.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+
         System.out.println("Lista de linhas: " + lineList);
         return lineList;
     }
-    
+
     private void jb_runMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_runMouseClicked
 
     }//GEN-LAST:event_jb_runMouseClicked
@@ -650,7 +665,7 @@ public class InterfaceScreen extends javax.swing.JFrame {
     private void jb_stopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_stopMouseClicked
 
     }//GEN-LAST:event_jb_stopMouseClicked
-    
+
     // Função que é executada quando o botão stop é clicado
     private void jb_stopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_stopActionPerformed
         System.out.println("\nBotão stop clicado!");

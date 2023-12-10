@@ -29,6 +29,25 @@ public class OutputActions {
         return outputs;
     }
     
+    // "Simula" escrita
+    public static Map<String, Boolean> dummyWrite(Map outputs) {
+        // Atualiza no hash
+//        outputs.put("Q1", true);
+//        outputs.put("Q2", false);
+//        outputs.put("Q3", false);
+//        outputs.put("Q4", false);
+//        outputs.put("Q5", true);
+//        outputs.put("Q6", false);
+//        outputs.put("Q7", false);
+//        outputs.put("Q8", false);
+        
+        // Escreve os valores de cada saída no módulo
+        // ...
+        
+        return outputs;
+    }
+    
+    // Escrita
     public static Map write(Map outputs) {
         // Atualiza no hash
         outputs.put("Q1", true);

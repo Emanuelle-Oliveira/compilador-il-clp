@@ -3,16 +3,17 @@ package compiladorinstructionlist.interpreter;
 import compiladorinstructionlist.memoryvariable.MemoryVariable;
 import compiladorinstructionlist.screen.InterfaceScreen;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+// Classe que interpreta as intruções
 public class Interpreter {
     
+    // Cria variáveis
     static Boolean accumulator;
     static List<String> validOperators = new ArrayList<String>();
     
-    
+    // Define operadores válidos
     public static void initializeValidOperators() {
         validOperators.add("LD");
         validOperators.add("LDN");
@@ -24,8 +25,10 @@ public class Interpreter {
         validOperators.add("ORN");
     }
     
+    // Recebe linhas vindas da tela
     public static Map receiveLines(List<String> lineList, Map<String, Boolean> inputs, Map<String, Boolean> outputs, Map<String, Boolean> memoryVariables) {
         
+        // Variáveis auxiliares
         char character = '-';
         Boolean spaceDetected = false;
         String operator = "";
@@ -33,13 +36,12 @@ public class Interpreter {
         
         initializeValidOperators();
         
+        // Limpa hash de variáveis de memória
         memoryVariables.clear();
         
+        // Itera lista de linhas
         for (int i = 0; i < lineList.size(); i++) {
             for (int j = 0; j < lineList.get(i).length(); j++) {
-                
-                //lastCharacter = character;
-
                 character = lineList.get(i).charAt(j);
                 
                 if (character != ' ' && character != '\n' && !spaceDetected) {

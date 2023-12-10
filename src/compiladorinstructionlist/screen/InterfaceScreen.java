@@ -3,7 +3,10 @@ package compiladorinstructionlist.screen;
 import compiladorinstructionlist.interpreter.Interpreter;
 import compiladorinstructionlist.output.OutputActions;
 import compiladorinstructionlist.input.InputActions;
+import compiladorinstructionlist.uppercasedocumentfilter.UpperCaseDocumentFilter;
 import java.awt.Color;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.text.AbstractDocument;
 import javax.swing.text.BadLocationException;
 
 // Classe da tela
@@ -43,7 +47,26 @@ public class InterfaceScreen extends javax.swing.JFrame {
         jta_memory_variables.setEditable(false);
         
         jta_writeInstructions.setEditable(true);
-        
+        // Transforma letras minúsculas em maiúsculas
+        AbstractDocument doc = (AbstractDocument) jta_writeInstructions.getDocument();
+        doc.setDocumentFilter(new UpperCaseDocumentFilter());
+        // Evita linhas vazias
+        jta_writeInstructions.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    String text = jta_writeInstructions.getText();
+                    int caretPosition = jta_writeInstructions.getCaretPosition();
+                    int lineStart = text.lastIndexOf("\n", caretPosition - 1) + 1;
+
+                    String line = text.substring(lineStart, caretPosition).trim();
+                    if (line.isEmpty()) {
+                        e.consume(); // Impede a quebra de linha se a linha atual estiver vazia ou tiver apenas espaços em branco
+                    }
+                }
+            }
+        });
+
         //Inicializa entradas e saídas
         inputs = new HashMap<>();
         outputs = new HashMap<>();

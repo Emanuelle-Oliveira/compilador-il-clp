@@ -4,6 +4,7 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
 
+// Classe que transforma letras para maiúsculo
 public class UpperCaseDocumentFilter extends DocumentFilter {
     @Override
     public void insertString(DocumentFilter.FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {

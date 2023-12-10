@@ -169,9 +169,9 @@ public class InterfaceScreen extends javax.swing.JFrame {
     }
     
     // Mostra mensagem de erro na tela
-    public static void showErrorMessage() {
+    public static void showErrorMessage(String message) {
         mode = 1;
-        JOptionPane.showMessageDialog(null, "Sintaxe incorreta!");
+        JOptionPane.showMessageDialog(null, message);
     }
 
     @SuppressWarnings("unchecked")
@@ -591,7 +591,7 @@ public class InterfaceScreen extends javax.swing.JFrame {
 
     // Função que é executada quando o botão run é clicado
     private void jb_runActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_runActionPerformed
-        System.out.println("\nRun clicado!");
+        System.out.println("\nBotão run clicado!");
         mode = 3;
         
         // Verificando tempo de delay
@@ -605,7 +605,7 @@ public class InterfaceScreen extends javax.swing.JFrame {
             } catch(NumberFormatException e) {
                 mode = 1;
                 updateMode();
-                JOptionPane.showMessageDialog(null, "Tempo de delay inválido! Insira um número inteiro.");
+                showErrorMessage("Tempo de delay inválido! Insira um número inteiro.");
             }
             
             System.out.println("Tempo de delay: " + time + "\n");
@@ -639,7 +639,7 @@ public class InterfaceScreen extends javax.swing.JFrame {
             }
         }
         
-        System.out.println("Lista de linhas: " + lineList + "\n");
+        System.out.println("Lista de linhas: " + lineList);
         return lineList;
     }
     
@@ -653,6 +653,7 @@ public class InterfaceScreen extends javax.swing.JFrame {
     
     // Função que é executada quando o botão stop é clicado
     private void jb_stopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_stopActionPerformed
+        System.out.println("\nBotão stop clicado!");
         mode = 2;
         updateMode();
     }//GEN-LAST:event_jb_stopActionPerformed
@@ -667,6 +668,7 @@ public class InterfaceScreen extends javax.swing.JFrame {
 
     // Função que é executada quando o botão program é clicado
     private void jb_programActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_programActionPerformed
+        System.out.println("\nBotão program clicado!");
         mode = 1;
         updateMode();
     }//GEN-LAST:event_jb_programActionPerformed

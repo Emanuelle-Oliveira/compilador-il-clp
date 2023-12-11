@@ -1,9 +1,22 @@
 package compiladorinstructionlist.input;
 
 import java.util.Map;
+import com.intelligt.modbus.jlibmodbus.Modbus;
+import com.intelligt.modbus.jlibmodbus.master.ModbusMaster;
+import com.intelligt.modbus.jlibmodbus.master.ModbusMasterFactory;
+import com.intelligt.modbus.jlibmodbus.exception.ModbusIOException;
+import com.intelligt.modbus.jlibmodbus.serial.SerialParameters;
+import com.intelligt.modbus.jlibmodbus.serial.SerialPort;
+import com.intelligt.modbus.jlibmodbus.serial.SerialPortFactoryJSSC;
+import com.intelligt.modbus.jlibmodbus.serial.SerialPortFactoryPJC;
+import com.intelligt.modbus.jlibmodbus.serial.SerialPortFactoryRXTX;
+import com.intelligt.modbus.jlibmodbus.serial.SerialUtils;
+import jssc.SerialPortList;
 
 // Classe para as ações relacionadas com as entradas
 public class InputActions {
+    
+    final static private int slaveId = 1;
     
     public static Map create(Map inputs) {
         // Cria as 8 entradas
@@ -32,17 +45,21 @@ public class InputActions {
     // "Simula" leitura
     public static Map<String, Boolean> dummyRead(Map inputs) {
         // Lê os valores de cada entrada vindos do módulo
-        // ...
+        boolean[] arrayBoolean = convertValueRead(8519680);
+        
+        //for (int i = 0; i < 8; i++) {
+        //    System.out.println(arrayBoolean[i]);
+        //}
         
         // Atualiza no hash
-        inputs.put("I1", true);
-        inputs.put("I2", false);
-        inputs.put("I3", false);
-        inputs.put("I4", false);
-        inputs.put("I5", true);
-        inputs.put("I6", false);
-        inputs.put("I7", false);
-        inputs.put("I8", false);
+        inputs.put("I1", arrayBoolean[7]);
+        inputs.put("I2", arrayBoolean[6]);
+        inputs.put("I3", arrayBoolean[5]);
+        inputs.put("I4", arrayBoolean[4]);
+        inputs.put("I5", arrayBoolean[3]);
+        inputs.put("I6", arrayBoolean[2]);
+        inputs.put("I7", arrayBoolean[1]);
+        inputs.put("I8", arrayBoolean[0]);
         
         return inputs;
     }
@@ -50,18 +67,91 @@ public class InputActions {
     // Leitura
     public static Map read(Map inputs) {
         // Lê os valores de cada entrada vindos do módulo
-        // ...
+        SerialParameters sp = new SerialParameters();
+        Modbus.setLogLevel(Modbus.LogLevel.LEVEL_DEBUG);
+        
+        Integer valueRead = 0;
+        
+        try {
+            // Seta porta
+            sp.setDevice("COM5");
+            
+            if (sp.getDevice() != null) {
+                // Parâmetros de configuração
+                sp.setBaudRate(SerialPort.BaudRate.BAUD_RATE_9600);
+                sp.setDataBits(8);
+                sp.setParity(SerialPort.Parity.NONE);
+                sp.setStopBits(1);
+
+                SerialUtils.setSerialPortFactory(new SerialPortFactoryPJC());
+
+                ModbusMaster m = ModbusMasterFactory.createModbusMasterRTU(sp);
+                m.connect();
+
+                int slaveId = 0x01;
+                int offset = 0x00C0;
+                int writeAddress = 0x0070;
+                int quantity = 1;
+ 
+                try {
+                    int[] registerValues = m.readHoldingRegisters(slaveId, offset, quantity);
+
+                    // Impressão dos valores lidos
+                    System.out.println("Valores dos Registradores:");
+                    for (int value : registerValues) {
+                        System.out.println("Endereço: " + offset + ", Valor: " + value);
+                        valueRead = value;
+                    }
+                   // m.writeMultipleRegisters(1, writeAddress, new int[]{255, 0});
+           
+                } catch (RuntimeException e) {
+                    throw e;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    try {
+                        m.disconnect();
+                    } catch (ModbusIOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            }
+        } catch (RuntimeException e) {
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        // Converte para boolean
+        boolean[] arrayBoolean = convertValueRead(valueRead);
         
         // Atualiza no hash
-        inputs.put("I1", true);
-        inputs.put("I2", false);
-        inputs.put("I3", false);
-        inputs.put("I4", false);
-        inputs.put("I5", true);
-        inputs.put("I6", false);
-        inputs.put("I7", false);
-        inputs.put("I8", false);
+        inputs.put("I1", arrayBoolean[7]);
+        inputs.put("I2", arrayBoolean[6]);
+        inputs.put("I3", arrayBoolean[5]);
+        inputs.put("I4", arrayBoolean[4]);
+        inputs.put("I5", arrayBoolean[3]);
+        inputs.put("I6", arrayBoolean[2]);
+        inputs.put("I7", arrayBoolean[1]);
+        inputs.put("I8", arrayBoolean[0]);
         
         return inputs;
+    }
+    
+    // Converte para boolean
+    public static boolean[] convertValueRead(int value) {
+        // Converte para binário de 24 bits
+        String binary = String.format("%24s", Integer.toBinaryString(value)).replaceAll(" ", "0");
+
+        // Extrair os 8 bits mais significativos
+        String importantBits = binary.substring(0, 8);
+
+        // Converter para array de booleanos
+        boolean[] resultado = new boolean[8];
+        for (int i = 0; i < 8; i++) {
+            resultado[i] = importantBits.charAt(i) == '1';
+        }
+        
+        return resultado;
     }
 }

@@ -37,7 +37,7 @@ public class Interpreter {
         
         initializeValidOperators();
         
-        // Limpa hash de variáveis de memória
+        // Limpa hash de variáveis de memória e saídas
         memoryVariables.clear();
         
         // Limpa acumulador

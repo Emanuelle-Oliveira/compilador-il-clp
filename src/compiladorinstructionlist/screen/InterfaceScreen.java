@@ -146,7 +146,7 @@ public class InterfaceScreen extends javax.swing.JFrame {
 
     // Atualiza o modo atual na tela
     public void updateMode() {
-        System.out.println(mode);
+        System.out.println("Modo atual: " + mode);
         if (mode == 1) {
             jl_mode_value.setText("Program");
             jta_writeInstructions.setEditable(true);
@@ -613,6 +613,7 @@ public class InterfaceScreen extends javax.swing.JFrame {
             System.out.println("Tempo de delay: " + time + "\n");
         }
 
+        // Executa o laço corretamente sem travar a tela 
         Timer timer = new Timer(time, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -621,9 +622,12 @@ public class InterfaceScreen extends javax.swing.JFrame {
                 lineList = saveLines(lineList);
 
                 if (mode == 3) {
-                    inputs = InputActions.dummyRead(inputs);
+                    //inputs = InputActions.dummyRead(inputs);
+                    inputs = InputActions.read(inputs);
+                    outputs = OutputActions.setAllFalse(outputs);
                     outputs = Interpreter.receiveLines(lineList, inputs, outputs, memoryVariables);
-                    outputs = OutputActions.dummyWrite(outputs);
+                    //outputs = OutputActions.dummyWrite(outputs);
+                    outputs = OutputActions.write(outputs);
                     updateMode();
                     updateScreen();
                     updateMemoryVariables();
@@ -633,10 +637,8 @@ public class InterfaceScreen extends javax.swing.JFrame {
             }
         });
 
-        //Início: laço de execução
         timer.setInitialDelay(0); // começa sem atraso
         timer.start();
-        // Fim: laço de execução
     }//GEN-LAST:event_jb_runActionPerformed
 
     // Salva linhas da área de texto e retorna lista de linhas

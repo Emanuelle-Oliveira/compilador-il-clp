@@ -91,7 +91,7 @@ public class InputActions {
                 int slaveId = 0x01;
                 int offset = 0x00C0;
                 int writeAddress = 0x0070;
-                int quantity = 1;
+                int quantity = 2;
  
                 try {
                     int[] registerValues = m.readHoldingRegisters(slaveId, offset, quantity);

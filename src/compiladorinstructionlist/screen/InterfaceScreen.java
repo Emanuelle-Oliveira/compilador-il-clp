@@ -627,12 +627,12 @@ public class InterfaceScreen extends javax.swing.JFrame {
                 lineList = saveLines(lineList);
 
                 if (mode == 3) {
-                    inputs = InputActions.dummyRead(inputs);
-                    //inputs = InputActions.read(inputs);
+                    //inputs = InputActions.dummyRead(inputs);
+                    inputs = InputActions.read(inputs);
                     outputs = OutputActions.setAllFalse(outputs);
                     outputs = Interpreter.receiveLines(lineList, inputs, outputs, memoryVariables);
-                    outputs = OutputActions.dummyWrite(outputs);
-                    //outputs = OutputActions.write(outputs);
+                    //outputs = OutputActions.dummyWrite(outputs);
+                    outputs = OutputActions.write(outputs);
                     updateMode();
                     updateScreen();
                     updateMemoryVariables();

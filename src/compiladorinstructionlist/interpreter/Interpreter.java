@@ -55,15 +55,15 @@ public class Interpreter {
                 for (int j = 0; j < lineList.get(i).length(); j++) {
                     character = lineList.get(i).charAt(j);
 
-                    if (character != ' ' && character != '\n' && !spaceDetected) {
+                    if (character != ' ' && character != '\n' && character != '\t' && !spaceDetected) {
                         operator = operator + character;
                     } 
 
-                    if(character == ' ' && !operator.equals("")) {
+                    if((character == ' ' || character == '\t') && !operator.equals("")) {
                         spaceDetected = true;
                     }
 
-                    if (character != ' ' && character != '\n' && spaceDetected) {
+                    if (character != ' ' && character != '\n' && character != '\t' && spaceDetected) {
                         variable = variable + character;
                     }
                 }

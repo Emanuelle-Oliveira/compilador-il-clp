@@ -56,7 +56,7 @@ public class OutputActions {
         // Escreve os valores de cada saída no módulo
         // ...
         Integer valueWrite = convertValueWrite(outputs);
-        System.out.println("Valor para escrever: " + valueWrite);
+        System.out.println("[Dummy] Valor enviado para escrita no módulo: " + valueWrite);
         
         return outputs;
     }
@@ -69,6 +69,7 @@ public class OutputActions {
         
         // Converte para inteiro
         Integer valueWrite = convertValueWrite(outputs);
+        System.out.println("Valor enviado para escrita no módulo: " + valueWrite);
         
         try {
             // Seta porta

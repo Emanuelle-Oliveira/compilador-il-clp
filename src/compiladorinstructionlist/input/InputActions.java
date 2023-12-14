@@ -45,7 +45,8 @@ public class InputActions {
     // "Simula" leitura
     public static Map<String, Boolean> dummyRead(Map inputs) {
         // Lê os valores de cada entrada vindos do módulo
-        boolean[] arrayBoolean = convertValueRead(8519680);
+        boolean[] arrayBoolean = convertValueRead(49);
+        System.out.println("[Dummy] Valor lido do módulo: 33");
         
         //for (int i = 0; i < 8; i++) {
         //    System.out.println(arrayBoolean[i]);
@@ -90,7 +91,6 @@ public class InputActions {
 
                 int slaveId = 0x01;
                 int offset = 0x00C0;
-                int writeAddress = 0x0070;
                 int quantity = 2;
  
                 try {
@@ -100,10 +100,10 @@ public class InputActions {
                     System.out.println("Valores dos Registradores:");
                     for (int value : registerValues) {
                         System.out.println("Endereço: " + offset + ", Valor: " + value);
-                        valueRead = value;
                     }
-                   // m.writeMultipleRegisters(1, writeAddress, new int[]{255, 0});
-           
+                    
+                    valueRead = registerValues[0];
+                    System.out.println("Valor lido do módulo: " + valueRead);
                 } catch (RuntimeException e) {
                     throw e;
                 } catch (Exception e) {
@@ -140,8 +140,8 @@ public class InputActions {
     
     // Converte para boolean
     public static boolean[] convertValueRead(int value) {
-        // Converte para binário de 24 bits
-        String binary = String.format("%24s", Integer.toBinaryString(value)).replaceAll(" ", "0");
+        // Converte para binário de 8 bits
+        String binary = String.format("%8s", Integer.toBinaryString(value)).replaceAll(" ", "0");
 
         // Extrair os 8 bits mais significativos
         String importantBits = binary.substring(0, 8);

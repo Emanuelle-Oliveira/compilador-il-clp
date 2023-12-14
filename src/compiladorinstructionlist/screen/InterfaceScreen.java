@@ -46,6 +46,8 @@ public class InterfaceScreen extends javax.swing.JFrame {
         jb_program.setContentAreaFilled(false);
         jb_program.setOpaque(true);
         jb_program.setBackground(Color.yellow);
+        
+        jt_time.setEditable(true);
 
         jta_memory_variables.setEditable(false);
 
@@ -150,12 +152,15 @@ public class InterfaceScreen extends javax.swing.JFrame {
         if (mode == 1) {
             jl_mode_value.setText("Program");
             jta_writeInstructions.setEditable(true);
+            jt_time.setEditable(true);
         } else if (mode == 2) {
             jl_mode_value.setText("Stop");
             jta_writeInstructions.setEditable(false);
+            jt_time.setEditable(false);
         } else {
             jl_mode_value.setText("Run");
             jta_writeInstructions.setEditable(false);
+            jt_time.setEditable(false);
         }
     }
 
@@ -622,12 +627,12 @@ public class InterfaceScreen extends javax.swing.JFrame {
                 lineList = saveLines(lineList);
 
                 if (mode == 3) {
-                    //inputs = InputActions.dummyRead(inputs);
-                    inputs = InputActions.read(inputs);
+                    inputs = InputActions.dummyRead(inputs);
+                    //inputs = InputActions.read(inputs);
                     outputs = OutputActions.setAllFalse(outputs);
                     outputs = Interpreter.receiveLines(lineList, inputs, outputs, memoryVariables);
-                    //outputs = OutputActions.dummyWrite(outputs);
-                    outputs = OutputActions.write(outputs);
+                    outputs = OutputActions.dummyWrite(outputs);
+                    //outputs = OutputActions.write(outputs);
                     updateMode();
                     updateScreen();
                     updateMemoryVariables();
